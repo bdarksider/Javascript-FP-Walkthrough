@@ -4,16 +4,24 @@ const Sum = x => ({
     inspect: () => `Sum(${x})`
 });
 
-const res = Sum(1).concat(Sum(2));
-
-console.log(res);
-
 const All = x => ({
     x,
     concat: ({ x: y }) => All(x && y),
     inspect: () => `All(${x})`
 });
 
-const all = All(true).concat(All(false))
+const First = x => ({
+    x,
+    concat: ({ x: y }) => First(x && y),
+    inspect: () => `First(${x})`
+});
 
-console.log(all)
+const Max = x => ({
+    x,
+    concat: ({ x: y }) => Max(x > y ? x : y),
+    inspect: () => `Max(${x})`
+});
+
+Max.empty = () => Max(-Infinity);
+
+const res = Max.empty().concat(Max(3)).concat(Max(4)).concat(Max(1))
