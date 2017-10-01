@@ -6,7 +6,7 @@ const Box = x =>
 })
 
 const nextCharForNumberString = str =>
-  Box(str)
+  Box(str) 
   .map(s => s.trim())
   .map(r => parseInt(r))
   .map(i => i+ 1)
